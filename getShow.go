@@ -5,7 +5,9 @@ package FQversion
 import (
 	"bytes"
 	"fmt"
+	"os"
 	"strings"
+	"time"
 )
 
 type Version registeredVersion
@@ -23,6 +25,22 @@ func (v *Version) GetVersionsAligned() []string { return GetVersionsAligned(v.Na
 func (v *Version) ProgVersion() string          { return ProgVersion(v.Name, v.Version, v.Build) }
 func (v *Version) ShowVersions() string         { return ShowVersions(v.Name, v.Version, v.Build) }
 func (v *Version) ShowVersionsAligned() string  { return ShowVersionsAligned(v.Name, v.Version, v.Build) }
+
+// GetBUILD returns a standard formatted BUILD date string
+// e.g. date '+%Y%m%d@%T'
+func GetBUILD() string {
+	return time.Now().Format("20060102@15:04:05")
+}
+
+// GetBUILDHOST returns the server this was compiled on
+func GetBUILDHOST() string {
+	host, err := os.Hostname
+	if err != nil {
+		host = err.String()
+	}
+
+	return host
+}
 
 // GetVersions return a list of Caller and Catalog versions
 func GetVersions(name, version, build string) []string {
