@@ -36,7 +36,7 @@ func GetBUILD() string {
 func GetBUILDHOST() string {
 	host, err := os.Hostname()
 	if err != nil {
-		host = err.String()
+		host = err.Error()
 	}
 
 	return host
