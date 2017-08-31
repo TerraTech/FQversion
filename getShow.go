@@ -34,7 +34,7 @@ func GetBUILD() string {
 
 // GetBUILDHOST returns the server this was compiled on
 func GetBUILDHOST() string {
-	host, err := os.Hostname
+	host, err := os.Hostname()
 	if err != nil {
 		host = err.String()
 	}
