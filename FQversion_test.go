@@ -38,37 +38,37 @@ type tv struct {
 	Name, Version, Build, String string
 }
 
-var vFQgolibs = tv{"FQgolibs", FQversion.VERSION, FQversion.BUILD, fmt.Sprintf("FQgolibs:\t%s\t%s", FQversion.VERSION, FQversion.BUILD)}
+var vFQgolibs = tv{"FQgolibs", FQversion.VERSION, FQversion.BUILD, fmt.Sprintf("FQgolibs:\t%s\t(%s)", FQversion.VERSION, FQversion.BUILD)}
 
 var testVersions = []tv{
 	vFQgolibs,
-	{"bar", "2.2.2", "20020202@12:12:12", "bar:\t2.2.2\t20020202@12:12:12"},
-	{"foo", "1.1.1", "20010101@11:11:11", "foo:\t1.1.1\t20010101@11:11:11"},
-	{"baz", "3.3.3", "20030303@13:13:13", "baz:\t3.3.3\t20030303@13:13:13"},
+	{"bar", "2.2.2", "20020202@12:12:12", "bar:\t2.2.2\t(20020202@12:12:12)"},
+	{"foo", "1.1.1", "20010101@11:11:11", "foo:\t1.1.1\t(20010101@11:11:11)"},
+	{"baz", "3.3.3", "20030303@13:13:13", "baz:\t3.3.3\t(20030303@13:13:13)"},
 }
 
 var testVersionsSorted = []tv{
 	vFQgolibs,
-	{"bar", "2.2.2", "20020202@12:12:12", "bar:\t2.2.2\t20020202@12:12:12"},
-	{"baz", "3.3.3", "20030303@13:13:13", "baz:\t3.3.3\t20030303@13:13:13"},
-	{"foo", "1.1.1", "20010101@11:11:11", "foo:\t1.1.1\t20010101@11:11:11"},
+	{"bar", "2.2.2", "20020202@12:12:12", "bar:\t2.2.2\t(20020202@12:12:12)"},
+	{"baz", "3.3.3", "20030303@13:13:13", "baz:\t3.3.3\t(20030303@13:13:13)"},
+	{"foo", "1.1.1", "20010101@11:11:11", "foo:\t1.1.1\t(20010101@11:11:11)"},
 }
 
 var tGVsorted []string
 
 var tGVAsorted = []string{
-	"FQzap:....4.4.4..20040404@14:14:14",
-	fmt.Sprintf("FQgolibs:.%s.%s", vFQgolibs.Version, vFQgolibs.Build),
-	"bar:......2.2.2..20020202@12:12:12",
-	"baz:......3.3.3..20030303@13:13:13",
-	"foo:......1.1.1..20010101@11:11:11",
+	"FQzap:....4.4.4..(20040404@14:14:14)",
+	fmt.Sprintf("FQgolibs:.%s.(%s)", vFQgolibs.Version, vFQgolibs.Build),
+	"bar:......2.2.2..(20020202@12:12:12)",
+	"baz:......3.3.3..(20030303@13:13:13)",
+	"foo:......1.1.1..(20010101@11:11:11)",
 }
 
 var tSVsortedString string
 var tSVAsortedString string
 
 // tcv == testCallerVersion
-var tcv = tv{"FQzap", "4.4.4", "20040404@14:14:14", "FQzap:\t4.4.4\t20040404@14:14:14"}
+var tcv = tv{"FQzap", "4.4.4", "20040404@14:14:14", "FQzap:\t4.4.4\t(20040404@14:14:14)"}
 
 func init() {
 	for _, tv := range testVersions[1:] { // index from [1:] to skip FQgolibs
@@ -91,7 +91,7 @@ func TestCatalog(t *testing.T) {
 
 func TestShowCatalog(t *testing.T) {
 	var e = vFQgolibs.String
-	e += "\nbar:\t2.2.2\t20020202@12:12:12\nbaz:\t3.3.3\t20030303@13:13:13\nfoo:\t1.1.1\t20010101@11:11:11\n"
+	e += "\nbar:\t2.2.2\t(20020202@12:12:12)\nbaz:\t3.3.3\t(20030303@13:13:13)\nfoo:\t1.1.1\t(20010101@11:11:11)\n"
 	sc := FQversion.ShowCatalog()
 	//t.Log("\n" + sc)
 	assert.Equal(t, e, sc)
