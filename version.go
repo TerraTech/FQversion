@@ -18,4 +18,4 @@
 
 package FQversion
 
-//go:generate go run ../tools/genVersion.go -package $GOPACKAGE -prog "$PROG" -version "$VERSION" -build "$BUILD" -lib "$LIB"
+//go:generate go run ./tools/genVersion.go -package "$GOPACKAGE" -prog "$PROG" -version "$VERSION" -build "$BUILD" -lib "$LIB"
