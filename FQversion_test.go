@@ -20,51 +20,37 @@ package FQversion_test
 
 import (
 	"fmt"
-	"os"
 	"strings"
 	"testing"
-
-	"futurequest.net/FQgolibs/FQtesting"
 
 	"github.com/stretchr/testify/assert"
 )
 
-import "futurequest.net/FQgolibs/FQversion"
-
-//#########################
-const createTestDir = false
-
-//#########################
-var _ = assert.Equal
-var D = FQtesting.D
-var FATAL = FQtesting.FATAL
-var ane = FQtesting.ANE
-var ft = FQtesting.NewFQtesting(createTestDir)
-
-func TestMain(m *testing.M) {
-	ft.Begin()
-	rc := m.Run()
-	ft.End()
-	os.Exit(rc)
-}
+import "github.com/TerraTech/FQversion"
 
 //##########################
+
+const (
+	PROG    = "FQversion"
+	VERSION = "v14.3.1"
+	BUILD   = "20190524@05:14:44"
+)
 
 type tv struct {
 	Name, Version, Build, String string
 }
 
-var vFQgolibs = tv{"FQgolibs", FQversion.VERSION, FQversion.BUILD, fmt.Sprintf("FQgolibs:\t%s\t(%s)", FQversion.VERSION, FQversion.BUILD)}
+var vFQversion = tv{"FQversion", VERSION, BUILD, fmt.Sprintf("FQversion:\t%s\t(%s)", VERSION, BUILD)}
 
 var testVersions = []tv{
-	vFQgolibs,
+	vFQversion,
 	{"bar", "2.2.2", "20020202@12:12:12", "bar:\t2.2.2\t(20020202@12:12:12)"},
 	{"foo", "1.1.1", "20010101@11:11:11", "foo:\t1.1.1\t(20010101@11:11:11)"},
 	{"baz", "3.3.3", "20030303@13:13:13", "baz:\t3.3.3\t(20030303@13:13:13)"},
 }
 
 var testVersionsSorted = []tv{
-	vFQgolibs,
+	vFQversion,
 	{"bar", "2.2.2", "20020202@12:12:12", "bar:\t2.2.2\t(20020202@12:12:12)"},
 	{"baz", "3.3.3", "20030303@13:13:13", "baz:\t3.3.3\t(20030303@13:13:13)"},
 	{"foo", "1.1.1", "20010101@11:11:11", "foo:\t1.1.1\t(20010101@11:11:11)"},
@@ -73,11 +59,11 @@ var testVersionsSorted = []tv{
 var tGVsorted []string
 
 var tGVAsorted = []string{
-	"FQzap:....4.4.4..(20040404@14:14:14)",
-	fmt.Sprintf("FQgolibs:.%s.(%s)", vFQgolibs.Version, vFQgolibs.Build),
-	"bar:......2.2.2..(20020202@12:12:12)",
-	"baz:......3.3.3..(20030303@13:13:13)",
-	"foo:......1.1.1..(20010101@11:11:11)",
+	"FQzap:.....4.4.4...(20040404@14:14:14)",
+	fmt.Sprintf("FQversion:.%s.(%s)", vFQversion.Version, vFQversion.Build),
+	"bar:.......2.2.2...(20020202@12:12:12)",
+	"baz:.......3.3.3...(20030303@13:13:13)",
+	"foo:.......1.1.1...(20010101@11:11:11)",
 }
 
 var tSVsortedString string
@@ -87,7 +73,9 @@ var tSVAsortedString string
 var tcv = tv{"FQzap", "4.4.4", "20040404@14:14:14", "FQzap:\t4.4.4\t(20040404@14:14:14)"}
 
 func init() {
-	for _, tv := range testVersions[1:] { // index from [1:] to skip FQgolibs
+	FQversion.Register(PROG, VERSION, BUILD)
+
+	for _, tv := range testVersions[1:] { // index from [1:] to skip FQversion
 		FQversion.Register(tv.Name, tv.Version, tv.Build)
 	}
 	tGVsorted = append(tGVsorted, tcv.String)
@@ -106,7 +94,7 @@ func TestCatalog(t *testing.T) {
 }
 
 func TestShowCatalog(t *testing.T) {
-	var e = vFQgolibs.String
+	var e = vFQversion.String
 	e += "\nbar:\t2.2.2\t(20020202@12:12:12)\nbaz:\t3.3.3\t(20030303@13:13:13)\nfoo:\t1.1.1\t(20010101@11:11:11)\n"
 	sc := FQversion.ShowCatalog()
 	//t.Log("\n" + sc)
