@@ -88,7 +88,7 @@ func init() {
 
 func TestCatalog(t *testing.T) {
 	c := FQversion.Catalog()
-	for i := range testVersionsSorted { // need to range due to registeredVersions and tv impedence mismatch
+	for i := range testVersionsSorted { // need to range due to registeredVersions and tv impedance mismatch
 		assert.EqualValues(t, testVersionsSorted[i], c[i])
 	}
 }
