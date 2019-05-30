@@ -1,4 +1,5 @@
 [![GoDoc](https://godoc.org/github.com/TerraTech/FQversion?status.svg)](https://godoc.org/github.com/TerraTech/FQversion)
+[![Go Report Card](https://goreportcard.com/badge/github.com/TerraTech/FQversion)](https://goreportcard.com/report/github.com/TerraTech/FQversion)
 
 ## FQversion
 
