@@ -79,7 +79,7 @@ func init() {
 		FQversion.Register(tv.Name, tv.Version, tv.Build)
 	}
 	tGVsorted = append(tGVsorted, tcv.String)
-	for i, _ := range testVersionsSorted {
+	for i := range testVersionsSorted {
 		tGVsorted = append(tGVsorted, testVersionsSorted[i].String)
 	}
 	tSVsortedString = strings.Join(tGVsorted, "\n")
@@ -88,7 +88,7 @@ func init() {
 
 func TestCatalog(t *testing.T) {
 	c := FQversion.Catalog()
-	for i, _ := range testVersionsSorted { // need to range due to registeredVersions and tv impedence mismatch
+	for i := range testVersionsSorted { // need to range due to registeredVersions and tv impedence mismatch
 		assert.EqualValues(t, testVersionsSorted[i], c[i])
 	}
 }
