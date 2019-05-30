@@ -16,7 +16,7 @@
 // limitations under the License.
 //==============================================================================
 
-// +build ignore
+// +build generate
 
 package main
 
