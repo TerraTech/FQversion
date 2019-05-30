@@ -18,6 +18,7 @@
 
 package FQversion
 
+// Register adds a new version structure to the catalog.
 func Register(name, version, build string) {
 	sv := nvb(name, version, build)
 	catalog = append(catalog, registeredVersion{Name: name, Version: version, Build: build, String: sv})

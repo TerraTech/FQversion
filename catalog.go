@@ -35,6 +35,7 @@ type registeredVersion struct {
 	String  string
 }
 
+// Catalog returns the list of registered versions
 func Catalog() []registeredVersion {
 	if !sort.IsSorted(byName(catalog)) {
 		sort.Sort(byName(catalog))
@@ -43,6 +44,7 @@ func Catalog() []registeredVersion {
 	return catalog
 }
 
+// ShowCatalog returns a stringified catalog list
 func ShowCatalog() string {
 	var buf bytes.Buffer
 	for rv := range _nvb() {
@@ -52,6 +54,7 @@ func ShowCatalog() string {
 	return buf.String()
 }
 
+// ShowCatalogAligned returns a stringified catalog list that is aligned via TabWriter
 func ShowCatalogAligned() string {
 	var buf bytes.Buffer
 	tw := newTabWriter(&buf)

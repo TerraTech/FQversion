@@ -26,8 +26,10 @@ import (
 	"time"
 )
 
+// Version is the version structure stored in the catalog.
 type Version registeredVersion
 
+// NewVersion returns a new Version object.
 func NewVersion(name, version, build string) *Version {
 	return &Version{
 		Name:    name,
@@ -36,19 +38,29 @@ func NewVersion(name, version, build string) *Version {
 	}
 }
 
-func (v *Version) GetVersions() []string        { return GetVersions(v.Name, v.Version, v.Build) }
-func (v *Version) GetVersionsAligned() []string { return GetVersionsAligned(v.Name, v.Version, v.Build) }
-func (v *Version) ProgVersion() string          { return ProgVersion(v.Name, v.Version, v.Build) }
-func (v *Version) ShowVersions() string         { return ShowVersions(v.Name, v.Version, v.Build) }
-func (v *Version) ShowVersionsAligned() string  { return ShowVersionsAligned(v.Name, v.Version, v.Build) }
+// GetVersions return a list of Caller and Catalog versions.
+func (v *Version) GetVersions() []string { return GetVersions(v.Name, v.Version, v.Build) }
 
-// GetBUILD returns a standard formatted BUILD date string
+// GetVersionsAligned return a list of Caller and Catalog versions that is aligned via TabWriter.
+func (v *Version) GetVersionsAligned() []string { return GetVersionsAligned(v.Name, v.Version, v.Build) }
+
+// ProgVersion returns a formatted version string given: name, version, build
+func (v *Version) ProgVersion() string { return ProgVersion(v.Name, v.Version, v.Build) }
+
+// ShowVersions returns a formatted version list of all registered versions in catalog
+func (v *Version) ShowVersions() string { return ShowVersions(v.Name, v.Version, v.Build) }
+
+// ShowVersionsAligned returns a formatted version list of all registered versions in catalog aligned via TabWriter
+func (v *Version) ShowVersionsAligned() string { return ShowVersionsAligned(v.Name, v.Version, v.Build) }
+
+// GetBUILD returns a standard formatted BUILD date string.
+//
 // e.g. date '+%Y%m%d@%T'
 func GetBUILD() string {
 	return time.Now().Format("20060102@15:04:05")
 }
 
-// GetBUILDHOST returns the server this was compiled on
+// GetBUILDHOST returns the server this was compiled on.
 func GetBUILDHOST() string {
 	host, err := os.Hostname()
 	if err != nil {
@@ -58,7 +70,7 @@ func GetBUILDHOST() string {
 	return host
 }
 
-// GetVersions return a list of Caller and Catalog versions
+// GetVersions return a list of Caller and Catalog versions.
 func GetVersions(name, version, build string) []string {
 	v := make([]string, 0, len(catalog)+1)
 	v = append(v, nvb(name, version, build))
@@ -69,6 +81,7 @@ func GetVersions(name, version, build string) []string {
 	return v
 }
 
+// GetVersionsAligned return a list of Caller and Catalog versions that is aligned via TabWriter.
 func GetVersionsAligned(name, version, build string) []string {
 	var buf bytes.Buffer
 	sv := GetVersions(name, version, build)
@@ -87,14 +100,17 @@ func GetVersionsAligned(name, version, build string) []string {
 	return va
 }
 
+// ProgVersion returns a formatted version string given: name, version, build
 func ProgVersion(name, version, build string) string {
 	return fmt.Sprintf("%s: %s (%s)", name, version, build)
 }
 
+// ShowVersions returns a formatted version list of all registered versions in catalog
 func ShowVersions(name, version, build string) string {
 	return strings.Join(GetVersions(name, version, build), "\n")
 }
 
+// ShowVersionsAligned returns a formatted version list of all registered versions in catalog aligned via TabWriter
 func ShowVersionsAligned(name, version, build string) string {
 	return strings.Join(GetVersionsAligned(name, version, build), "\n")
 }
