@@ -1,3 +1,5 @@
+github.com/TerraTech/FQversion/tools/genVersion v0.0.0-20220204022918-f4268203cf66 h1:dFj3XGFAL08648Iv4MBXSbRATmj890Zmywaa1fQa2Ns=
+github.com/TerraTech/FQversion/tools/genVersion v0.0.0-20220204022918-f4268203cf66/go.mod h1:kczxHYXcPxF8eY9Tte0+HQkJV/fM+AG4Uq49IgTdimY=
 github.com/davecgh/go-spew v1.1.0 h1:ZDRjVQ15GmhC3fiQ8ni8+OwkZQO4DARzQgrnXU1Liz8=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
