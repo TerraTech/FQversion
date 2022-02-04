@@ -1,6 +1,6 @@
 //==============================================================================
 // This file is part of FQgolibs
-// Copyright (c) 2017-2019, FutureQuest, Inc.
+// Copyright (c) 2017-2022, FutureQuest, Inc.
 //   https://www.FutureQuest.net
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -49,7 +49,7 @@ const (
 )
 
 const (
-	default_import_FQversion = "futurequest.net/FQgolibs/FQversion"
+	default_import_FQversion = "github.com/TerraTech/FQversion"
 )
 
 var license = map[lType]string{
