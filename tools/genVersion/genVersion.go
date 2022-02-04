@@ -16,7 +16,7 @@
 // limitations under the License.
 //==============================================================================
 
-// +build generate
+//go:build generate
 
 package main
 
